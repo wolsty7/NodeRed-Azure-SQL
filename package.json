@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/rsavant/NodeRed-Azure-SQL"
+    "url": "https://github.com/rasavant-ms/NodeRed-Azure-SQL"
   },
   "author": {
     "name": "Lucas Humenhuk",
