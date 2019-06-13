@@ -124,10 +124,10 @@ module.exports = function (RED) {
 
         // Create the Node-RED node
         RED.nodes.createNode(this, config);
-        dbAddress = node.credentials.serverAddress;
-        dbName = node.credentials.databaseName;
-        username = node.credentials.login;
-        pass = node.credentials.password;
+        dbAddress = config.serverAddress;
+        dbName = config.databaseName;
+        username = config.login;
+        pass = config.password;
 
         this.on('input', function (msg) {
             //Connecting to Database and querying
@@ -170,14 +170,12 @@ module.exports = function (RED) {
 
     // Registration of the node into Node-RED to manage Databases
     RED.nodes.registerType("Azure SQL", AzureSQL, {
-        credentials: {
+        defaults: {
+            name: { value: "Azure SQL" },
             serverAddress: { type: "text" },
             databaseName: { type: "text" },
             login: { type: "text" },
-            password: { type: "password" },
-        },
-        defaults: {
-            name: { value: "Azure SQL" },
+            password: { type: "password" }
         }
     });
 
