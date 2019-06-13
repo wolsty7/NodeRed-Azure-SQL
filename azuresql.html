@@ -4,18 +4,16 @@
         color: '#00abec',
         defaults: {
             name: {value:"Azure SQL"},
+            serverAddress: { type: "text", required: true },
+            databaseName: { type: "text", required: true },
+            login: { type: "text", required: true },
+            password: { type: "password", required: true },
         },
         inputs:1,
         outputs:1,
         icon: "azuresql.png",
         label: function() {
-            return this.name||"Azure SQL";
-        },
-        credentials: {
-            serverAddress: { type: "text" },
-            databaseName: { type: "text" },
-            login: { type: "text" },
-            password: { type: "password" },
+            return this.name||"Azure SQL"+":"+this.serverAddress||""+":"+this.databaseName||""+":"+this.login||""+":"+this.password||"";
         }
     });
 </script>
