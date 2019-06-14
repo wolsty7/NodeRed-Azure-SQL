@@ -56,7 +56,6 @@ module.exports = function (RED) {
 
  function executeStatement() {  
         request = new Request(queryString, function(err, rowCount, rows) {  
-                node.warn(rowCount + " rows returned");
             if (err) {  
                 setStatus(statusEnum.error);
                 node.error('Error: ' +JSON.stringify(err));
@@ -67,7 +66,6 @@ module.exports = function (RED) {
         var columnDetails= {};
 
         request.on('row', function(columns) {  
-            node.warn("Received "+columns.length+" columns");
             columns.forEach(function(column) {  
               if (column.value === null) {  
                 node.log('NULL');  
