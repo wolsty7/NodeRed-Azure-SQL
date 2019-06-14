@@ -143,7 +143,7 @@ module.exports = function (RED) {
                 messageJSON = JSON.parse(msg.payload);
                 if (msg.hasOwnProperty("sql_cmd"))
                 {
-                    node.warn("set sql_cmd: "+sql_cmd);
+                    node.warn("set sql_cmd: "+msg.sql_cmd);
                     sql_cmd = msg.sql_cmd;
                 }
             }
