@@ -9,6 +9,7 @@ module.exports = function (RED) {
     var username = "";
     var pass = "";
     var queryString = "";
+    var sql_cmd = "";
     var messageJSON = "";
     var node = null;
     var nodeConfig = null;
@@ -74,6 +75,7 @@ module.exports = function (RED) {
                 columnDetails[columnName] = column.value;
               }  
             }); 
+            columnDetails["sql_cmd"] = sql_cmd;
             result.push(columnDetails);
             node.send(result);
             setStatus(statusEnum.sent);   
@@ -131,7 +133,6 @@ module.exports = function (RED) {
         this.on('input', function (msg) {
             //Connecting to Database and querying
             var messageJSON = null;
-
             if (typeof (msg.payload) != "string") {
                 node.log("JSON");
                 messageJSON = msg.payload;
@@ -140,6 +141,8 @@ module.exports = function (RED) {
                 //Converting string to JSON Object
                 //Sample string to QUERY : {"action": "Q", "query" : "SELECT * FROM table WHERE firstName = 'Lucas'"}
                 messageJSON = JSON.parse(msg.payload);
+                if (typeof (msg.sql_cmd) == "string")
+                    sql_cmd = msg.sql_cmd;
             }
             var action = messageJSON.action;
             queryString = messageJSON.query;
