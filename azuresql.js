@@ -141,8 +141,11 @@ module.exports = function (RED) {
                 //Converting string to JSON Object
                 //Sample string to QUERY : {"action": "Q", "query" : "SELECT * FROM table WHERE firstName = 'Lucas'"}
                 messageJSON = JSON.parse(msg.payload);
-                if (typeof (msg.sql_cmd) == "string")
+                if (msg.hasOwnProperty("sql_cmd"))
+                {
+                    node.warn("set sql_cmd: "+sql_cmd);
                     sql_cmd = msg.sql_cmd;
+                }
             }
             var action = messageJSON.action;
             queryString = messageJSON.query;
