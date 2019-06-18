@@ -100,8 +100,8 @@ module.exports = function (RED) {
         });
 
         request.on('row', function(columns) {
-            node.log("Insert Complete. ID of inserted item is " + columns[0].value);
-            node.send("Insert Complete. ID of inserted item is " + columns[0].value);
+            node.log("Insert Complete");
+            //node.send("Insert Complete. ID of inserted item is " + columns[0].value);
         });
         
         client.execSql(request);  
